@@ -1,66 +1,19 @@
-
-
-
-    let button = document.querySelector("#btn");
-    let input = document.querySelector("#reset")
-   
+function Calculate() {
+    var height = document.getElementById("h-input").value;
+    var weight = document.getElementById("w-input").value;
   
-    // Function for reset button
-   
-   
-    input.addEventListener("click",function(){
-          document.querySelector("#reset")
-        document.querySelector(".height").value = "";
-        document.querySelector(".weight").value = "";
-        document.querySelector("#result").value  = "";
-     }
-    );
-      
-    // Function for calculating BMI
-    button.addEventListener("click", calculateBMI);
-   
-     
-   
-    
-   
-function calculateBMI() {
+    var result = parseFloat(weight) / (parseFloat(height) / 100) ** 2;
   
-    /* Getting input from user into height variable. */
-    let height = parseInt(document
-            .querySelector(".height").value);
-  
-    /* Getting input from user into weight variable.*/
-    let weight = parseInt(document
-            .querySelector(".weight").value);
-  
-    let result = document.querySelector("#result");
-  
-    // Checking the user providing a proper
-    // value or not
-    if (height === "" || isNaN(height)) 
-        result.innerHTML = "Provide a valid Height!";
-  
-    else if (weight === "" || isNaN(weight)) 
-        result.innerHTML = "Provide a valid Weight!";
-  
-    // If both input is valid, calculate the bmi
-    else {
-  
-        // Fixing upto 2 decimal places
-        let bmi = (weight / ((height * height) 
-                            / 10000)).toFixed(2);
-  
-       
-        if (bmi < 18.6) result.innerHTML =
-            `Under Weight : ${bmi}`;
-  
-        else if (bmi >= 18.6 && bmi < 24.9) 
-            result.innerHTML = 
-                `Normal : ${bmi}`;
-  
-        else result.innerHTML =
-            `Over Weight : ${bmi}`;
+    if (!isNaN(result)) {
+      document.getElementById("bmi-output").innerHTML = result;
+      if (result < 18.5) {
+        document.getElementById("bmi-status").innerHTML = "Underweight";
+      } else if (result < 25) {
+        document.getElementById("bmi-status").innerHTML = "Healthy";
+      } else if (result < 30) {
+        document.getElementById("bmi-status").innerHTML = "Overweight";
+      } else {
+        document.getElementById("bmi-status").innerHTML = "Obesity";
+      }
     }
-}
-
-
+  }
